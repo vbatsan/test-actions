@@ -18,7 +18,7 @@ case $1 in
         echo "3"
         ;;
     "eu")
-        echo "4"
+        echo "listener-rule/app/private-services-alb/a8bb2cfe900e5c15/4dc7b5810aaa1d2c/be455433c1a1b4b5"
         ;;
     *)
         echo "Invalid environment: $1"

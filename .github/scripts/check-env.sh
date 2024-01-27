@@ -1,5 +1,7 @@
 #!/bin/bash
 
-export HIDDEN_SERVICE="Test-service"
+HIDDEN_SERVICE="Test-service"
+RELEASED_SERVICE="Release service"
 
-echo $HIDDEN_SERVICE
+echo "HIDDEN_SERVICE:${HIDDEN_SERVICE}"
+echo "RELEASED_SERVICE:${RELEASED_SERVICE}"
