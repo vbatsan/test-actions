@@ -1,0 +1,32 @@
+name: Deploy DEV
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        default: '2'
+        required: true
+        description: "Deploy dev-"
+        options:
+          - '1'
+          - '2'
+          - '3'
+ push:
+   branches:
+     - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Run script
+        shell: bash
+        run: ./.github/script/check-env.sh
+
