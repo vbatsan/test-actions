@@ -9,4 +9,4 @@ runs:
       run: |
         chmod +x ./.github/scripts/check-env.sh
         ./.github/scripts/check-env.sh
-        echo "${{ env.HIDDEN_SERVICE }}"
+        echo "token=$HIDDEN_SERVICE" >> $GITHUB_OUTPUT

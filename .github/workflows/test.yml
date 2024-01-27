@@ -35,4 +35,4 @@ jobs:
 
       - name: Report
         shell: bash
-        run: echo "${{steps.check.outputs}}"
+        run: echo "${{steps.check.outputs.token}}"
