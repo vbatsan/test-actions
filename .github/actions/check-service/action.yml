@@ -8,6 +8,6 @@ runs:
       shell: bash
       run: |
         chmod +x ./.github/scripts/check-env.sh
-        ./.github/scripts/check-env.sh
-        echo "go > ${{env.HIDDEN_SERVICE}}"
-        echo "token=$HIDDEN_SERVICE" >> $GITHUB_OUTPUT
+        TOKEN=$(./.github/scripts/check-env.sh)
+        echo "go > $HIDDEN_SERVICE"
+        echo "token=$TOKEN" >> $GITHUB_OUTPUT
