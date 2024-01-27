@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         chmod +x ./.github/scripts/define-arn-rule.sh
-        RULE=$(./.github/scripts/define-arn-rule.sh)
+        RULE=$(./.github/scripts/define-arn-rule.sh ${{ inputs.env }})
         echo "Rule is $RULE"
 
     - name: Run script
