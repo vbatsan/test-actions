@@ -6,4 +6,6 @@ runs:
   steps:
     - name: Run script
       shell: bash
-      run: ./.github/scripts/check-env
+      run: |
+        chmod +x ./.github/scripts/check-env.sh
+        ./.github/scripts/check-env.sh >> $GITHUB_OUTPUT
