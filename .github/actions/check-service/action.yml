@@ -8,4 +8,5 @@ runs:
       shell: bash
       run: |
         chmod +x ./.github/scripts/check-env.sh
-        ./.github/scripts/check-env.sh >> $GITHUB_OUTPUT
+        ./.github/scripts/check-env.sh
+        echo "$HIDDEN_SERVICE"
