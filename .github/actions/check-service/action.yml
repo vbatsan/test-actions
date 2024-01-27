@@ -9,5 +9,5 @@ runs:
       run: |
         chmod +x ./.github/scripts/check-env.sh
         TOKEN=$(./.github/scripts/check-env.sh)
-        echo "go > $HIDDEN_SERVICE"
+        echo "go > $TOKEN"
         echo "token=$TOKEN" >> $GITHUB_OUTPUT
