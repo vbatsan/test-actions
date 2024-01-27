@@ -31,5 +31,5 @@ jobs:
 
       - name: Run script
         shell: bash
-        run: ./.github/scripts/check-env
+        run: ./.github/scripts/check-env.sh
 
