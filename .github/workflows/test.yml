@@ -31,6 +31,5 @@ jobs:
 
       - name: Run script
         shell: bash
-        run: |
-          echo "${pwd}"
+        run: ./.github/scripts/check-env
 
