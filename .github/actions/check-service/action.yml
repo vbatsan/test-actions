@@ -3,8 +3,10 @@ description: Test
 
 runs:
   using: composite
+  output: ${{ steps.result.outputs }}
   steps:
     - name: Run script
+      id: result
       shell: bash
       run: |
         chmod +x ./.github/scripts/check-env.sh
