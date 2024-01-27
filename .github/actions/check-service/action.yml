@@ -16,10 +16,10 @@ runs:
     - name: Define rule
       shell: bash
       run: |
-        chmod +x ./.github/actions/define-arn-rule
+        chmod +x ./.github/scripts/define-arn-rule.sh
         RULE=$(./.github/scripts/define-arn-rule.sh)
         echo "Rule is $RULE"
-        
+
     - name: Run script
       id: result
       shell: bash
