@@ -1,3 +1,3 @@
 #!/bin/bash
 
-export HIDDEN_SERVICE=Test-service
+export HIDDEN_SERVICE="Test-service"
