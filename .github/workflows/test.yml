@@ -9,9 +9,9 @@ on:
         required: true
         description: "Deploy dev-"
         options:
-          - '1'
-          - '2'
-          - '3'
+          - 'eval'
+          - 'prod'
+          - 'eu'
   push:
     branches:
       - main
@@ -24,6 +24,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      ENV: ${{ github.events.inputs.target || "prod" }}
     
     steps:
 
@@ -32,6 +34,8 @@ jobs:
       - name: Run script
         id: check
         uses: ./.github/actions/check-service
+        with:
+          env: ${{ env.ENV }}
 
       - name: Report
         shell: bash

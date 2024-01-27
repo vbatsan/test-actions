@@ -1,6 +1,10 @@
 name: Run script
 description: Test
 
+inputs:
+  env:
+    description: env
+
 outputs:
   token:
     description: token
@@ -9,6 +13,13 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Define rule
+      shell: bash
+      run: |
+        chmod +x ./.github/actions/define-arn-rule
+        RULE=$(./.github/scripts/define-arn-rule.sh)
+        echo "Rule is $RULE"
+        
     - name: Run script
       id: result
       shell: bash
