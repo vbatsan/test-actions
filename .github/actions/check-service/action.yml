@@ -1,9 +1,13 @@
 name: Run script
 description: Test
 
+outputs:
+  token:
+    description: token
+    value: ${{ steps.result.outputs.token }}
+
 runs:
   using: composite
-  output: ${{ steps.result.outputs }}
   steps:
     - name: Run script
       id: result
