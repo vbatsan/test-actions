@@ -26,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+
+      - name: Run script0
+        shell: bash
+        run: ls
+
       - name: Run script
         shell: bash
         run: ./.github/scripts/check-env.sh
