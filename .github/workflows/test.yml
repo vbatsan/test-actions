@@ -28,5 +28,5 @@ jobs:
     steps:
       - name: Run script
         shell: bash
-        run: ./.github/script/check-env.sh
+        run: ./.github/scripts/check-env.sh
 
