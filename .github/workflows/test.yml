@@ -30,6 +30,7 @@ jobs:
       - name: Run script
         shell: bash
         run: |
+          echo "${pwd}"
           chmod +x ./.github/scripts/check-env.sh
            ./.github/scripts/check-env.sh
 
