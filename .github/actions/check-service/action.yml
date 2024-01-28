@@ -27,5 +27,9 @@ runs:
         chmod +x ./.github/scripts/check-env.sh
         source ./.github/scripts/check-env.sh my-arg1 my-arg2
         echo "go > $HIDDEN_SERVICE"
-        echo "arg1 > $ARG1"
+        echo "$ARG1" >> $GITHUB_OUTPUT
         echo "arg2 > $ARG2"
+
+    - name: Show
+      shell: bash
+      run: echo "${{ steps.result.outputs.ARG1}}"
