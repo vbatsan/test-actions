@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy
+    name: Build image
     runs-on: ubuntu-latest
     env:
       ENV: ${{ github.event.inputs.target || 'prod' }}
@@ -40,13 +40,15 @@ jobs:
       # - name: Report
       #   shell: bash
       #   run: echo "${{steps.check.outputs.token}}"
-      - name: Save image
-        shell: bash
-        run: |
-          docker save consul-update2 -o release-image.tag
 
-      - name: Save artifacts
-        uses: actions/upload-artifact@v2
+      - name: Load artifacts
+        uses: actions/download-artifact@v2
         with:
           name: release-docker-image
-          path: release-image.tag
+          path: artifacts
+
+      - name: Pull image
+        shell: bash
+        run: |
+          docker load artifacts/release-image.tag
+          docker pull consul-update2
