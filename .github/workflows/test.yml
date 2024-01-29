@@ -57,3 +57,4 @@ jobs:
           asset_path: release-image.tar
           asset_name: release-image.tar
           asset_content_type: application/tar
+          token: ${{ secrets.PERSONAL_TOKEN }}
