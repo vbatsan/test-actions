@@ -51,4 +51,4 @@ jobs:
         shell: bash
         run: |
           docker load artifacts/release-image.tag
-          docker pull consul-update2
+          docker pull node:alpine

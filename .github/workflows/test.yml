@@ -40,10 +40,15 @@ jobs:
       # - name: Report
       #   shell: bash
       #   run: echo "${{steps.check.outputs.token}}"
+      - name: Pull image
+        shell: bash
+        run: |
+          docker pull node:alpine
+
       - name: Save image
         shell: bash
         run: |
-          docker save consul-update2 -o release-image.tag
+          docker save node:alpine -o release-image.tag
 
       - name: Save artifacts
         uses: actions/upload-artifact@v2
