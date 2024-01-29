@@ -12,9 +12,9 @@ on:
           - 'eval'
           - 'prod'
           - 'eu'
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 permissions:
   id-token: write
