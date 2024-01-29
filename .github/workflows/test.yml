@@ -50,12 +50,20 @@ jobs:
         run: |
           docker save node:alpine -o release-image.tar
 
+      - name: Get latest release tag
+        id: get-tag
+        shell: bash
+        run: |
+          latest_tag=$(curl -sSL https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
+          echo "Latest release tag is $latest_tag"
+          echo "::set-output name=RELEASE_TAG::$latest_tag"
+
       - name: Upload artifact
         uses: actions/upload-release-asset@v1
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ github.event.release.id }}/assets
+          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.get-tag.outputs.RELEASE_TAG }}/assets
           asset_path: release-image.tar
           asset_name: release-image.tar
           asset_content_type: application/tar
