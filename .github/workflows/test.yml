@@ -48,10 +48,12 @@ jobs:
       - name: Save image
         shell: bash
         run: |
-          docker save node:alpine -o release-image.tag
+          docker save node:alpine -o release-image.tar
 
-      - name: Save artifacts
-        uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-release-asset@v1
         with:
-          name: release-docker-image
-          path: release-image.tag
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release-image.tar
+          asset_name: release-image.tar
+          asset_content_type: application/tar
