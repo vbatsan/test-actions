@@ -1,4 +1,4 @@
-name: Save image
+name: Deploy > ${{ github.event.inputs.target}}
 
 on:
   workflow_dispatch:
