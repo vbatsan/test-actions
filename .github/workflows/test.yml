@@ -31,39 +31,17 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      # - name: Run script
-      #   id: check
-      #   uses: ./.github/actions/check-service
-      #   with:
-      #     env: ${{ env.ENV }}
-
-      # - name: Report
-      #   shell: bash
-      #   run: echo "${{steps.check.outputs.token}}"
-      - name: Pull image
+      - name: Run script
+        id: result
         shell: bash
         run: |
-          docker pull node:alpine
+          chmod +x ./.github/scripts/check-env.sh
+          source ./.github/scripts/check-env.sh my-arg1 my-arg2
+          echo "go > $HIDDEN_SERVICE"
+          echo "ARG=$ARG1" >> $GITHUB_ENV
+          echo "arg2 > $ARG2"
 
-      - name: Save image
+      - name: Report
         shell: bash
-        run: |
-          docker save node:alpine -o release-image.tar
+        run: echo "this is arg1 > ${{env.ARG }}"
 
-      - name: Get latest release tag
-        id: get-tag
-        shell: bash
-        run: |
-          latest_tag=$(curl -sSL https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
-          echo "Latest release tag is $latest_tag"
-          echo "::set-output name=RELEASE_TAG::$latest_tag"
-
-      - name: Upload artifact
-        uses: actions/upload-release-asset@v1
-        env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.get-tag.outputs.RELEASE_TAG }}/assets
-          asset_path: release-image.tar
-          asset_name: release-image.tar
-          asset_content_type: application/tar
