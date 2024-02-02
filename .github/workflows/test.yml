@@ -37,7 +37,7 @@ jobs:
         shell: bash
         id: define-hidden-service
         run: |
-          echo "HIDDEN_SERVICE='blue'" >> $GITHUB_OUTPUT
+          echo "HIDDEN_SERVICE=blue" >> $GITHUB_OUTPUT
 
       - name: Define current role
         id: define-current-role
