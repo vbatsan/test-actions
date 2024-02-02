@@ -50,5 +50,5 @@ jobs:
 
       - name: Report
         shell: bash
-        run: echo "role is > ${{env.I_AM_ROLE }}"
+        run: echo "hidden service is >> ${{steps.define-hidden-service.outputs.HIDDEN_SERVICE }}role is > ${{env.I_AM_ROLE }}"
 
