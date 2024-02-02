@@ -26,22 +26,29 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ENV: ${{ github.event.inputs.target || 'prod' }}
+      I_AM_ROLE_BLUE: blue-role
+      I_AM_ROLE_GREEN: green-role
     
     steps:
 
       - uses: actions/checkout@v2
 
-      - name: Run script
-        id: result
+      - name: Define hidden
         shell: bash
+        id: define-hidden-service
         run: |
-          chmod +x ./.github/scripts/check-env.sh
-          source ./.github/scripts/check-env.sh my-arg1 my-arg2
-          echo "go > $HIDDEN_SERVICE"
-          echo "ARG=$ARG1" >> $GITHUB_ENV
-          echo "arg2 > $ARG2"
+          echo "HIDDEN_SERVICE='blue'" >> $GITHUB_OUTPUT
+
+      - name: Define current role
+        id: define-current-role
+        run: |
+          if [ "${{ steps.define-hidden-service.outputs.HIDDEN_SERVICE }}" == "blue" ]; then
+            echo "I_AM_ROLE=${{ env.I_AM_ROLE_BLUE }}" >> $GITHUB_ENV
+            else
+            echo "I_AM_ROLE=${{ env.I_AM_ROLE_GREEN }}" >> $GITHUB_ENV
+            fi
 
       - name: Report
         shell: bash
-        run: echo "this is arg1 > ${{env.ARG }} and arg2 > $ARG2"
+        run: echo "role is > ${{env.I_AM_ROLE }}"
 
