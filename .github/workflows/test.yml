@@ -24,6 +24,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    outputs:
+      role: ${{ env.I_AM_ROLE }}
     env:
       ENV: ${{ github.event.inputs.target || 'prod' }}
       I_AM_ROLE_BLUE: blue-role
@@ -51,4 +53,16 @@ jobs:
       - name: Report
         shell: bash
         run: echo "hidden service is >> ${{steps.define-hidden-service.outputs.HIDDEN_SERVICE }}role is > ${{env.I_AM_ROLE }}"
+  report:
+    name: Report
+    runs-on: ubuntu-latest
+    needs: [deploy]
+    env:
+      ROLE: ${{needs.deploy.outputs.role}}
+    
+    steps:
+      - name: echo
+        run: |
+          echo "role is >> ${{ env.ROLE }}"
+
 
