@@ -30,5 +30,6 @@ jobs:
         shell: bash
         run: |
           echo "env is >> ${{ vars.ENV }}" 
-          echo " input is >> ${{ github.event.inputs.target || inputs.target }}"
+          echo " input is >> ${{ github.event.inputs.target }}"
+          echo " input from call >> ${{inputs.target}}"
   
