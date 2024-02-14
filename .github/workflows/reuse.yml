@@ -1,0 +1,33 @@
+name: Reusable
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        default: 'rc'
+        required: true
+        description: "Environment to deploy"
+        options:
+          - "dev"
+          - 'prod'
+  workflow_call:
+    inputs:
+      target:
+        type: string
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.target }}
+    steps:
+      - name: Log
+        shell: bash
+        run: |
+          echo "env is >> ${{ vars.ENV }}" 
+  
