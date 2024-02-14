@@ -30,4 +30,5 @@ jobs:
         shell: bash
         run: |
           echo "env is >> ${{ vars.ENV }}" 
+          echo " input is >> ${{ github.event.inputs.target }}"
   

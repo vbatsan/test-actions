@@ -64,5 +64,10 @@ jobs:
       - name: echo
         run: |
           echo "role is >> ${{ env.ROLE }}"
+  switch:
+    uses: ./.github/workflows/reise.yml
+    with:
+      target: ${{github.event.inputs.target}}
+    
 
 
