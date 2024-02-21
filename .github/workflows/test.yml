@@ -66,6 +66,7 @@ jobs:
           echo "role is >> ${{ env.ROLE }}"
   switch:
     needs: [report]
+    if: ${{github.event.inputs.target == 'prod'}}
     uses: ./.github/workflows/reuse.yml
     with:
       target: ${{github.event.inputs.target}}
