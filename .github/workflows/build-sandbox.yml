@@ -1,0 +1,40 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          always-auth: true
+          registry-url: https://artifactory.infrateam.xyz/api/npm/npm/
+
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Run test and lint
+        run: echo "test"
+
+      - name: Checkout to sandbox branch
+        run: |
+          git checkout -b sandbox
+
+      - name: Build
+        run: touch text.txt
+
+      - name: Push to sandbox
+        run: |
+          git add .
+          git commit -m "${{ github.run_number }}"
+          git push origin sandbox
