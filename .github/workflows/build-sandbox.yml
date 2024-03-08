@@ -20,9 +20,6 @@ jobs:
         run: |
           git checkout -b sandbox
 
-      - name: Build
-        run: touch text.txt
-
       - name: Push to sandbox
         run: |
           git add .
